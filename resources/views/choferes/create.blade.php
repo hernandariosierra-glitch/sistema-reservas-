@@ -54,6 +54,15 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
+            <div class="col-md-6">
+    <label class="form-label fw-semibold">Licencia</label>
+    <input type="text" name="licencia"
+           class="form-control rounded-3 @error('licencia') is-invalid @enderror"
+           value="{{ old('licencia') }}">
+    @error('licencia')
+        <div class="invalid-feedback">{{ $message }}</div>
+    @enderror
+</div>
 
         </div>
 

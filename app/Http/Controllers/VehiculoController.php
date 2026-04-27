@@ -32,7 +32,8 @@ class VehiculoController extends Controller
          $request->validate([
         'marca' => 'required',
         'modelo' => 'required',
-        'matricula' => 'required|unique:vehiculos',
+        'matricula' => 'required|unique:vehiculos',             
+        'anio' => 'required|integer|min:1900|max:' . date('Y'),
         'capacidad' => 'required|integer|min:1'
     ]);
 
