@@ -30,10 +30,16 @@
             padding: 10px 15px;
             border-radius: 10px;
             margin-bottom: 8px;
+            transition: 0.2s ease-in-out;
         }
 
         .sidebar a:hover {
             background-color: #1e293b;
+            color: white;
+        }
+
+        .sidebar a.active {
+            background-color: #2563eb;
             color: white;
         }
 
@@ -68,25 +74,27 @@
 
 <div class="d-flex">
     <div class="sidebar">
-        <h5 class="text-white mb-4">
-            <i class="bi bi-bus-front"></i> Sistema
-        </h5>
 
-        <a href="{{ route('clientes.index') }}">
+        <a href="{{ route('reservas.index') }}" class="fw-bold fs-5 {{ request()->routeIs('reservas.*') ? 'active' : '' }}">
+            <i class="bi bi-bus-front"></i> Sistema
+        </a>
+
+        <a href="{{ route('clientes.index') }}" class="{{ request()->routeIs('clientes.*') ? 'active' : '' }}">
             <i class="bi bi-people"></i> Clientes
         </a>
 
-        <a href="{{ route('vehiculos.index') }}">
+        <a href="{{ route('vehiculos.index') }}" class="{{ request()->routeIs('vehiculos.*') ? 'active' : '' }}">
             <i class="bi bi-car-front"></i> Vehículos
         </a>
 
-        <a href="{{ route('choferes.index') }}">
+        <a href="{{ route('choferes.index') }}" class="{{ request()->routeIs('choferes.*') ? 'active' : '' }}">
             <i class="bi bi-person-badge"></i> Choferes
         </a>
 
-        <a href="{{ route('reservas.index') }}">
+        <a href="{{ route('reservas.index') }}" class="{{ request()->routeIs('reservas.*') ? 'active' : '' }}">
             <i class="bi bi-calendar-check"></i> Reservas
         </a>
+
     </div>
 
     <div class="content">
