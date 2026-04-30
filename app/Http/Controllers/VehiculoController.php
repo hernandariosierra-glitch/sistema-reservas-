@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TipoVehiculo;
 use App\Models\Vehiculo;
 use Illuminate\Http\Request;
 
@@ -20,9 +21,10 @@ class VehiculoController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
-         return view('vehiculos.create');
-    }
+{
+    $tipos = TipoVehiculo::all();
+    return view('vehiculos.create', compact('tipos'));
+}
 
     /**
      * Store a newly created resource in storage.
@@ -30,14 +32,13 @@ class VehiculoController extends Controller
     public function store(Request $request)
     {
          $request->validate([
-        'marca' => 'required',
-        'modelo' => 'required',
-        'matricula' => 'required|unique:vehiculos',             
-        'anio' => 'required|integer|min:1900|max:' . date('Y'),
-        'capacidad' => 'required|integer|min:1'
-    ]);
-
-    Vehiculo::create($request->all());
+    'marca' => 'required',
+    'modelo' => 'required',
+    'tipo' => 'required|in:auto,camioneta,minibus,bus',
+    'matricula' => 'required|unique:vehiculos',
+    'anio' => 'required|integer',
+]);
+Vehiculo::create($request->all());
 
     return redirect()->route('vehiculos.index')
         ->with('success', 'Vehículo creado correctamente');
@@ -64,12 +65,13 @@ class VehiculoController extends Controller
      */
     public function update(Request $request, Vehiculo $vehiculo)
     {
-         $request->validate([
-        'marca' => 'required',
-        'modelo' => 'required',
-        'matricula' => 'required|unique:vehiculos,matricula,' . $vehiculo->id,
-        'capacidad' => 'required|integer|min:1'
-    ]);
+        $request->validate([
+    'marca' => 'required',
+    'modelo' => 'required',
+    'tipo' => 'required|in:auto,camioneta,minibus,bus',
+    'matricula' => 'required|unique:vehiculos',
+    'anio' => 'required|integer',
+]);
 
     $vehiculo->update($request->all());
 

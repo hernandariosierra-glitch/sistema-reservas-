@@ -57,15 +57,19 @@
 
         </div>
          <div class="col-md-4">
-        <label class="form-label fw-semibold">Capacidad</label>
-        <input type="number" name="capacidad"
-               class="form-control rounded-3 @error('capacidad') is-invalid @enderror"
-               value="{{ old('capacidad') }}" min="1">
-        @error('capacidad')
-            <div class="invalid-feedback">{{ $message }}</div>
-        @enderror
-    </div>
-
+    <label class="form-label fw-semibold">Tipo de Vehículo</label>
+    <select name="tipo"
+            class="form-control rounded-3 @error('tipo') is-invalid @enderror">
+        <option value="">Seleccione tipo</option>
+        <option value="auto">Auto</option>
+        <option value="camioneta">Camioneta</option>
+        <option value="minibus">Minibus</option>
+        <option value="bus">Bus</option>
+    </select>
+    @error('tipo')
+        <div class="invalid-feedback">{{ $message }}</div>
+    @enderror
+</div>
 
         <div class="mt-5">
             <button type="submit" class="btn btn-dark px-4 rounded-3">
