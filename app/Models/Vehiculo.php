@@ -12,7 +12,7 @@ class Vehiculo extends Model
     'tipo',
     'matricula',
     'anio',
-    'capacidad',
+    
     'activo'
 ];
 public function tipo()

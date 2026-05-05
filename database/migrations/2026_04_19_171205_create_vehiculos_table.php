@@ -16,7 +16,7 @@ return new class extends Migration
         $table->string('marca');
         $table->string('modelo');
         $table->string('matricula')->unique();
-        $table->integer('capacidad');
+        
         $table->boolean('activo')->default(true);
         $table->timestamps();
     });
